@@ -1,6 +1,7 @@
 from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ModelViewSet
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
 from logistic.models import Product, Stock
@@ -20,3 +21,8 @@ class StockViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['products']
     search_fields = ['products__title']
+
+
+@api_view(['GET'])
+def sample_view(request):
+    return Response('Этот текст был изменён!!!!')
